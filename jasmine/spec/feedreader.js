@@ -31,20 +31,26 @@ $(function() {
 		 * in the allFeeds object and ensures it has a URL defined
 		 * and that the URL is not empty.
 		 */
-		 it('URLs are defined and not empty', function() {
+		// forEach loop to go through each feed
+		it('URLs are defined and not empty', function() {
 			allFeeds.forEach(function(feed) {
+				// test that url is defined
 				expect(feed.url).toBeDefined();
+				// test that url is not empty
 				expect(feed.url.length).not.toBe(0);
 			});
-		 });
+		});
 
 		/* DONE: Write a test that loops through each feed
 		 * in the allFeeds object and ensures it has a name defined
 		 * and that the name is not empty.
 		 */
+		// forEach loop to go through each feed
 		it('names are defined and not empty', function() {
 			allFeeds.forEach(function(feed){
+				// test that name is defined
 				expect(feed.name).toBeDefined();
+				// test that feed is not empty
 				expect(feed.name.length).not.toBe(0);
 			});
 		});
@@ -59,6 +65,7 @@ $(function() {
 		 * the CSS to determine how we're performing the
 		 * hiding/showing of the menu element.
 		 */
+		// test that the menu-hidden class is true
 		it('is hidden by default', function() {
 			expect($('body').hasClass('menu-hidden')).toBe(true);
 		});
@@ -68,9 +75,11 @@ $(function() {
 		  * should have two expectations: does the menu display when
 		  * clicked and does it hide when clicked again.
 		  */
+		// test that first click on the menu link unhides menu (class menu-hidden is false)
 		it('changes visibility when the menu icon is clicked', function() {
 			$('.menu-icon-link').click();
 			expect($('body').hasClass('menu-hidden')).toBe(false);
+		// test that second click on the menu link re-hides menu (class menu-hidden is true)
 			$('.menu-icon-link').click();
 			expect($('body').hasClass('menu-hidden')).toBe(true);
 		}); 
@@ -84,12 +93,13 @@ $(function() {
 		 * Remember, loadFeed() is asynchronous so this test wil require
 		 * the use of Jasmine's beforeEach and asynchronous done() function.
 		 */
+		// async loadFeed
 		beforeEach(function(done){
 			loadFeed(0, function(){
 			done();
 			});
 		});
-
+		// test that entry length is not zero
 		it('contains at least one entry', function() {
 			expect($(".entry").length).not.toBe(0);
 		});
@@ -100,16 +110,18 @@ $(function() {
 		 * by the loadFeed function that the content actually changes.
 		 * Remember, loadFeed() is asynchronous.
 		 */
+		// establish a first feed variable to test against and load async
 		var feedOne = $('.feed').html();
 		beforeEach(function(done) {
 			loadFeed(0, done);
 		});
 
+		// test second feed vs first feed and ensure results don't match
 		it('shows next feed changes', function(done) {
 			var feedTwo = $('.feed').html();
 			expect(feedTwo).not.toBe(feedOne);
 			done();
 		});
 	});
-	
+
 }());
