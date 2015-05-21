@@ -94,10 +94,8 @@ $(function() {
 		 * the use of Jasmine's beforeEach and asynchronous done() function.
 		 */
 		// async loadFeed
-		beforeEach(function(done){
-			loadFeed(0, function(){
-			done();
-			});
+		beforeEach(function(done) {
+			loadFeed(0, done);
 		});
 		// test that entry length is not zero
 		it('contains at least one entry', function() {
