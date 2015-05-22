@@ -115,12 +115,10 @@ $(function() {
 
 		beforeEach(function(done) {
 			loadFeed(0, function() {
-				feedZero = $(".feed").html();
-				console.log(feedZero);
+				feedZero = $(".header-title").html();
 			});
 			loadFeed(1, function() {
-				feedOne = $(".feed").html();
-				console.log(feedOne);
+				feedOne = $(".header-title").html();
 				done();
 			});
 		});
